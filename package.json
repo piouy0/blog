@@ -10,6 +10,9 @@
     "deploy": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll && git add out/ && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages"
   },
   "dependencies": {
+    "@mdx-js/loader": "^2.1.1",
+    "@mdx-js/react": "^2.1.1",
+    "@next/mdx": "^12.1.6",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0"

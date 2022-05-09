@@ -1,7 +1,21 @@
+import { MDXProvider } from "@mdx-js/react";
 import type { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
-}
+const MDXComponents = {
+  p: props => {
+    console.log("test", props);
+    return <p {...props} />;
+  },
+  a: props => <a {...props} />,
+  h1: props => <h2 {...props} />,
+};
 
-export default MyApp;
+const BlogApp = ({ Component, pageProps }: AppProps) => {
+  return (
+    <MDXProvider components={MDXComponents}>
+      <Component {...pageProps} />
+    </MDXProvider>
+  );
+};
+
+export default BlogApp;
