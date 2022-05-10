@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap");
+
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: "Nanum Gothic", sans-serif !important;
   box-sizing: border-box;
 }
 
@@ -11,13 +13,13 @@ body {
   font-size: 1.4rem;
   background: white;
   -webkit-overflow-scrolling: touch;
-  /* for Roboto */
+  /* for font */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto;
 }
 
 input {
-  font-family: "Roboto", sans-serif !important;
+  font-family: "Nanum Gothic", sans-serif !important;
 }
 
 button:focus,

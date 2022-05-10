@@ -1,13 +1,16 @@
 import styled from "@emotion/styled";
 import React from "react";
 
+import Header from "./Header";
+
 interface Props {
   children: React.ReactNode;
 }
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Container = styled.div`
@@ -15,11 +18,15 @@ const Container = styled.div`
   width: 100%;
 `;
 
+const Contents = styled.div``;
+
 const Layout: React.FC<Props> = ({ children }) => {
   return (
     <Wrapper>
-      {/* <Header /> */}
-      <Container>{children}</Container>
+      <Container>
+        <Header />
+        <Contents>{children}</Contents>
+      </Container>
     </Wrapper>
   );
 };
