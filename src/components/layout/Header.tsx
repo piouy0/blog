@@ -7,6 +7,9 @@ import GitHub from "@mui/icons-material/GitHub";
 import IconButton from "components/common/button/IconButton";
 import Icon from "components/common/icon/Icon";
 
+import { themedPalette } from "styles/theme";
+import useToggleTheme from "hooks/theme/useToggleTheme";
+
 const Wrapper = styled.div`
   width: 100%;
 `;
@@ -21,6 +24,7 @@ const Container = styled.div`
 const Logo = styled.div`
   font-size: 24px;
   font-weight: bold;
+  color: ${themedPalette.primaryText};
 `;
 
 const Util = styled.div`
@@ -48,14 +52,16 @@ const utilItems = [
 
 interface Props {}
 
-const Header: React.FC<Props> = ({}) => {
+const Header: React.FC<Props> = () => {
+  const [_, toggle] = useToggleTheme();
+
   return (
     <Wrapper>
       <Container>
         <Logo>Blog</Logo>
         <Util>
           {utilItems.map((item, index) => (
-            <UtilItem key={item.label} isEnd={index === utilItems.length - 1}>
+            <UtilItem key={item.label} isEnd={index === utilItems.length - 1} onClick={toggle}>
               <IconButton>
                 <Icon icon={item.icon} />
               </IconButton>

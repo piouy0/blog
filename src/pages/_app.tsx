@@ -1,8 +1,11 @@
 import React from "react";
+import { AppProps } from "next/app";
+import { RecoilRoot } from "recoil";
 import { MDXProvider } from "@mdx-js/react";
-import type { AppProps } from "next/app";
 import { MDXComponents as IMDXComponents } from "mdx/types";
+
 import Layout from "components/layout/Layout";
+import Core from "components/Core";
 
 import "../css/reset.css";
 import "../css/global.css";
@@ -12,13 +15,18 @@ const MDXComponents: IMDXComponents = {
   h2: props => <h1 {...props} />,
 };
 
-const BlogApp = ({ Component, pageProps }: AppProps) => {
+const BlogApp = (props: AppProps) => {
+  const { Component, pageProps } = props;
+
   return (
-    <MDXProvider components={MDXComponents}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </MDXProvider>
+    <RecoilRoot>
+      <MDXProvider components={MDXComponents}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+        <Core />
+      </MDXProvider>
+    </RecoilRoot>
   );
 };
 
