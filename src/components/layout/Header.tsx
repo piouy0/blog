@@ -48,7 +48,7 @@ const utilItems = [
 
 interface Props {}
 
-const Header: React.FC<Props> = () => {
+const Header: React.FC<Props> = ({}) => {
   return (
     <Wrapper>
       <Container>
