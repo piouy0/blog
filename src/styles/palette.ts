@@ -14,6 +14,7 @@ export interface Theme {
   quaternaryBorder: string;
 
   iconPrimaryBackground: string;
+  floatingBackground: string;
 }
 
 const palette = {
@@ -60,6 +61,7 @@ const lightTheme = {
   quaternaryBorder: palette.gray[20],
 
   iconPrimaryBackground: palette.gray[5],
+  floatingBackground: palette.gray[0],
 };
 
 const darkTheme = {
@@ -78,6 +80,7 @@ const darkTheme = {
   quaternaryBorder: palette.gray[60],
 
   iconPrimaryBackground: palette.gray[80],
+  floatingBackground: palette.gray[90],
 };
 
 export { lightTheme, darkTheme };

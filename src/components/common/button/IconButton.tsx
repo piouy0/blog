@@ -4,8 +4,8 @@ import { IconButton as BaseIconButton } from "@mui/material";
 import { themedPalette } from "styles/theme";
 
 const IconButtonStyle = () => ({
-  width: "40px",
-  height: "40px",
+  width: "2.5rem",
+  height: "2.5rem",
   "&:hover": {
     background: themedPalette.iconPrimaryBackground,
   },
@@ -13,11 +13,14 @@ const IconButtonStyle = () => ({
 
 interface Props {
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
-const IconButton: React.FC<Props> = ({ children }) => (
+const IconButton: React.FC<Props> = ({ children, onClick }) => (
   <>
-    <BaseIconButton sx={IconButtonStyle}>{children}</BaseIconButton>
+    <BaseIconButton sx={IconButtonStyle} onClick={onClick}>
+      {children}
+    </BaseIconButton>
   </>
 );
 

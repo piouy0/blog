@@ -2,7 +2,12 @@ import { useTheme } from "recoil/atom/theme";
 import storage from "util/storage";
 
 const useToggleTheme = () => {
-  const { checkTheme, enableLightMode, enableDarkMode } = useTheme();
+  const {
+    state: { theme },
+    checkTheme,
+    enableLightMode,
+    enableDarkMode,
+  } = useTheme();
 
   const save = (value: "light" | "dark") => {
     storage.setItem("theme", value); // For CSR
@@ -20,7 +25,7 @@ const useToggleTheme = () => {
     }
   };
 
-  return toggle;
+  return [theme, toggle] as const;
 };
 
 export default useToggleTheme;

@@ -3,10 +3,11 @@ import styled from "@emotion/styled";
 import { themedPalette } from "styles/theme";
 
 const Wrapper = styled.div`
-  height: 24px;
+  height: 1.5rem;
   & svg {
-    font-size: 24px;
+    display: block;
     color: ${themedPalette.primaryText};
+    font-size: 1.5rem;
   }
 `;
 

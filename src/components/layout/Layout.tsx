@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   align-items: center;
   min-height: 100vh;
   background: ${themedPalette.primaryBackground};
-  transition: 0.125s all ease-in;
+  transition: all 0.125s ease-in;
 `;
 
 const Container = styled.div`

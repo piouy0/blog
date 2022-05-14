@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { animated, useTransition } from "react-spring";
 import LightMode from "@mui/icons-material/LightMode";
 import DarkMode from "@mui/icons-material/DarkMode";
+import CloudIcon from "@mui/icons-material/Cloud";
 import GitHub from "@mui/icons-material/GitHub";
 
 import IconButton from "components/common/button/IconButton";
@@ -24,52 +26,112 @@ const Container = styled.div`
   height: 64px;
 `;
 
-const Logo = styled.div`
-  font-size: 24px;
+const LogoWrapper = styled.div`
+  display: flex;
+  align-items: center;
   font-weight: bold;
   color: ${themedPalette.primaryText};
+`;
+
+const LogoIcon = styled.div`
+  height: 2.5rem;
+  cursor: pointer;
+  & > svg {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+`;
+
+const LogoLabel = styled.div`
+  margin-left: 8px;
+  font-size: 1.5rem;
 `;
 
 const Util = styled.div`
   display: flex;
 `;
 
-interface UtilItemProps {
-  isEnd: boolean;
-}
+const UtilItem = styled.div``;
 
-const UtilItem = styled.div<UtilItemProps>`
-  margin-right: ${({ isEnd }) => (isEnd ? "unset" : "10px")};
+const DarkModeWrapper = styled.div`
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
 `;
 
-const utilItems = [
-  {
-    label: "mode",
-    icon: <LightMode />,
-  },
-  {
-    label: "git",
-    icon: <GitHub />,
-  },
-];
+const DarkModeItem = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const AnimatedWrapper = animated(UtilItem);
 
 interface Props {}
 
 const Header: React.FC<Props> = () => {
-  const toggle = useToggleTheme();
+  const [theme, toggle] = useToggleTheme();
+
+  const isDark = theme === "dark";
+
+  const transitions = useTransition(isDark, {
+    initial: {
+      transform: "scale(1) rotate(0deg)",
+      opacity: 1,
+    },
+    from: {
+      transform: "scale(0) rotate(-180deg)",
+      opacity: 0,
+    },
+    enter: {
+      transform: "scale(1) rotate(0deg)",
+      opacity: 1,
+    },
+    leave: {
+      transform: "scale(0) rotate(180deg)",
+      opacity: 0,
+    },
+  });
 
   return (
     <Wrapper>
       <Container>
-        <Logo>Test</Logo>
+        <LogoWrapper>
+          <LogoIcon>
+            <CloudIcon />
+          </LogoIcon>
+          {/* <LogoLabel>Blog</LogoLabel> */}
+        </LogoWrapper>
         <Util>
-          {utilItems.map((item, index) => (
-            <UtilItem key={item.label} isEnd={index === utilItems.length - 1} onClick={toggle}>
-              <IconButton>
-                <Icon icon={item.icon} />
-              </IconButton>
-            </UtilItem>
-          ))}
+          <UtilItem onClick={toggle}>
+            <DarkModeWrapper>
+              {transitions((style, item) =>
+                item ? (
+                  <DarkModeItem>
+                    <AnimatedWrapper style={style}>
+                      <IconButton>
+                        <Icon icon={<DarkMode />} />
+                      </IconButton>
+                    </AnimatedWrapper>
+                  </DarkModeItem>
+                ) : (
+                  <DarkModeItem>
+                    <AnimatedWrapper style={style}>
+                      <IconButton>
+                        <Icon icon={<LightMode />} />
+                      </IconButton>
+                    </AnimatedWrapper>
+                  </DarkModeItem>
+                ),
+              )}
+            </DarkModeWrapper>
+          </UtilItem>
+          <UtilItem>
+            <IconButton>
+              <Icon icon={<GitHub />} />
+            </IconButton>
+          </UtilItem>
         </Util>
       </Container>
     </Wrapper>
