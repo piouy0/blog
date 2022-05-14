@@ -4,6 +4,7 @@ import React from "react";
 import { themedPalette } from "styles/theme";
 import useThemeEffect from "hooks/theme/useThemeEffect";
 import Header from "./Header";
+import FloatingHeader from "./FloatingHeader";
 
 interface Props {
   children: React.ReactNode;
@@ -32,6 +33,7 @@ const Layout: React.FC<Props> = ({ children }) => {
     <Wrapper>
       <Container>
         <Header />
+        <FloatingHeader />
         <Contents>{children}</Contents>
       </Container>
     </Wrapper>

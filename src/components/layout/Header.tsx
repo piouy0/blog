@@ -11,7 +11,10 @@ import { themedPalette } from "styles/theme";
 import useToggleTheme from "hooks/theme/useToggleTheme";
 
 const Wrapper = styled.div`
+  /* for floating banner */
+  max-width: 1024px;
   width: 100%;
+  margin: 0 auto;
 `;
 
 const Container = styled.div`
@@ -53,12 +56,12 @@ const utilItems = [
 interface Props {}
 
 const Header: React.FC<Props> = () => {
-  const [_, toggle] = useToggleTheme();
+  const toggle = useToggleTheme();
 
   return (
     <Wrapper>
       <Container>
-        <Logo>Blog</Logo>
+        <Logo>Test</Logo>
         <Util>
           {utilItems.map((item, index) => (
             <UtilItem key={item.label} isEnd={index === utilItems.length - 1} onClick={toggle}>

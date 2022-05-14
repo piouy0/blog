@@ -1,6 +1,6 @@
 import React from "react";
 import { css, Global } from "@emotion/react";
-import { themes } from "styles/theme";
+import { themedPalette, themes } from "styles/theme";
 
 const Style = css`
   body {
@@ -19,6 +19,10 @@ const Style = css`
 
   body[data-theme="dark"] {
     ${themes.dark};
+  }
+
+  body {
+    background: ${themedPalette.primaryBackground};
   }
 `;
 

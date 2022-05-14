@@ -48,6 +48,7 @@
     }
   ],
   "rules": {
+    "no-param-reassign": "off",
     "import/no-unresolved": "off",
     "import/no-extraneous-dependencies": [
       2,

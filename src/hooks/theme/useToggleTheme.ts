@@ -1,5 +1,5 @@
+import { useTheme } from "recoil/atom/theme";
 import storage from "util/storage";
-import useTheme from "./useTheme";
 
 const useToggleTheme = () => {
   const { checkTheme, enableLightMode, enableDarkMode } = useTheme();
@@ -9,7 +9,7 @@ const useToggleTheme = () => {
     document.cookie = `theme=${value}; path=/;`; // For SSR
   };
 
-  const toggle = () => {
+  const toggle = (): void => {
     if (!checkTheme) return;
     if (checkTheme === "dark") {
       enableLightMode();
@@ -20,7 +20,7 @@ const useToggleTheme = () => {
     }
   };
 
-  return [checkTheme, toggle] as const;
+  return toggle;
 };
 
 export default useToggleTheme;
