@@ -11,6 +11,7 @@ const useThemeEffect = () => {
 
   useEffect(() => {
     const systemPreferDark = window.matchMedia("(prefers-color-scheme:dark)").matches;
+
     setSystemTheme(systemPreferDark ? "dark" : "light");
   }, [setTheme]);
 
