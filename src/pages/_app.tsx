@@ -4,7 +4,7 @@ import { RecoilRoot } from "recoil";
 import { MDXProvider } from "@mdx-js/react";
 
 import Layout from "components/layout/Layout";
-import Core from "components/Core";
+import GlobalContents from "components/GlobalContents";
 import MdxComponents from "components/MdxComponents";
 
 import "../css/reset.css";
@@ -19,7 +19,7 @@ const BlogApp = (props: AppProps) => {
         <Layout>
           <Component {...pageProps} />
         </Layout>
-        <Core />
+        <GlobalContents />
       </MDXProvider>
     </RecoilRoot>
   );

@@ -19,14 +19,8 @@ export interface Theme {
 
 const palette = {
   primary: {
-    5: "#F7F8FF",
-    10: "#EEF0FD",
-    20: "#E0E3FD",
-    40: "#C4C9FA",
-    60: "#9BA0F6",
-    80: "#7B7BF3",
-    100: "#5A41F5",
-    120: "#3F23EB",
+    0: "#ff1659",
+    100: "#00e9a6",
   },
   gray: {
     0: "#FFFFFF",
@@ -49,6 +43,7 @@ const lightTheme = {
   primaryBackground: palette.gray[0],
   secondaryBackground: palette.gray[5],
   highlightBackground: palette.primary[100],
+  destructiveBackground: palette.primary[0],
 
   primaryText: palette.gray[90],
   secondaryText: palette.gray[60],
@@ -67,7 +62,8 @@ const lightTheme = {
 const darkTheme = {
   primaryBackground: palette.gray[100],
   secondaryBackground: palette.gray[90],
-  highlightBackground: palette.gray[100],
+  highlightBackground: palette.primary[100],
+  destructiveBackground: palette.primary[0],
 
   primaryText: palette.gray[0],
   secondaryText: palette.gray[30],
