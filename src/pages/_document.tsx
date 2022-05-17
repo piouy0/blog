@@ -1,24 +1,22 @@
 import React from "react";
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
 
 import { extractFromCookie } from "util/theme";
 
-export default class MyDocument extends Document<any> {
-  static async getInitialProps(ctx: any) {
+export default class MyDocument extends Document<{ theme: string }> {
+  static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
 
-    let cookie;
-
+    let theme;
     if (ctx.req && ctx.req.headers.cookie) {
-      cookie = ctx.req.headers.cookie;
+      theme = extractFromCookie(ctx.req.headers.cookie, "theme");
     }
 
-    return { ...initialProps, cookie };
+    return { ...initialProps, theme };
   }
 
   render() {
-    const theme = extractFromCookie(this.props.cookie, "theme");
-
+    const { theme } = this.props;
     return (
       <Html>
         <Head />

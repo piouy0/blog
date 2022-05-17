@@ -1,13 +1,29 @@
 import React from "react";
 
-import Slider from "components/common/slider/Slider";
+import Slider from "components/slider/Slider";
 import FilterButton from "components/common/button/FilterButton";
+import DrawerContentLayout from "components/drawer/drawer/DrawerContentLayout";
+
+import { uesGlobalDrawer } from "recoil/atom/globalDrawer";
 
 interface Props {}
 
+const Test = () => {
+  return (
+    <DrawerContentLayout>
+      <div>Test</div>
+    </DrawerContentLayout>
+  );
+};
+
 const DateFilter: React.FC<Props> = () => {
+  const { openGlobalDrawer } = uesGlobalDrawer();
+
   const handleClick = () => {
-    console.log("click");
+    openGlobalDrawer({
+      handleClose: () => {},
+      component: Test,
+    });
   };
 
   return (

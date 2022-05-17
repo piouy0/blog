@@ -79,4 +79,4 @@ const darkTheme = {
   floatingBackground: palette.gray[90],
 };
 
-export { lightTheme, darkTheme };
+export { palette, lightTheme, darkTheme };

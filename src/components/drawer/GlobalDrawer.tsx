@@ -1,15 +1,24 @@
 import React from "react";
-import styled from "@emotion/styled";
-import { Drawer } from "@mui/material";
 
-const Content = styled.div``;
+import { uesGlobalDrawer } from "recoil/atom/globalDrawer";
+import Drawer from "./drawer/Drawer";
 
 interface Props {}
 
 const GlobalDrawer: React.FC<Props> = () => {
+  const { state: drawer, closeGlobalDrawer } = uesGlobalDrawer();
+
+  const handleClose = () => {
+    if (drawer.handleClose) {
+      drawer.handleClose();
+    }
+
+    closeGlobalDrawer();
+  };
+
   return (
-    <Drawer anchor="bottom" open={true} onClose={() => {}}>
-      <Content>Content</Content>
+    <Drawer anchor="bottom" open={drawer.open} onClose={handleClose}>
+      {drawer.component && <drawer.component {...drawer.componentProps} />}
     </Drawer>
   );
 };

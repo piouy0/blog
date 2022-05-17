@@ -1,6 +1,11 @@
 import React from "react";
 import BaseSlider from "@mui/material/Slider";
 import styled from "@emotion/styled";
+import { themedPalette } from "styles/theme";
+
+const SliderStyle = () => ({
+  color: themedPalette.highlightBackground,
+});
 
 const Wrapper = styled.div`
   width: 300px;
@@ -21,7 +26,7 @@ const Slider: React.FC<Props> = ({ min, max }) => {
 
   return (
     <Wrapper>
-      <BaseSlider min={min} max={max} value={value} onChange={handleChange} valueLabelDisplay="auto" />
+      <BaseSlider min={min} max={max} value={value} onChange={handleChange} sx={SliderStyle} valueLabelDisplay="auto" />
     </Wrapper>
   );
 };
