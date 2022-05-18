@@ -11,7 +11,7 @@ interface Props {}
 const Test = () => {
   return (
     <DrawerContentLayout>
-      <div>Test</div>
+      <Slider min={2022} max={2024} />
     </DrawerContentLayout>
   );
 };
@@ -28,7 +28,6 @@ const DateFilter: React.FC<Props> = () => {
 
   return (
     <div>
-      <Slider min={2022} max={2024} />
       <FilterButton onClick={handleClick} />
     </div>
   );

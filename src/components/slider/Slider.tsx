@@ -8,7 +8,7 @@ const SliderStyle = () => ({
 });
 
 const Wrapper = styled.div`
-  width: 300px;
+  padding: 0 12px;
 `;
 
 interface Props {
