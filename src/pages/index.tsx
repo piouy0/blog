@@ -1,5 +1,6 @@
 import React from "react";
 import type { NextPage } from "next";
+import { AppContext } from "next/app";
 import styled from "@emotion/styled";
 
 import Test from "posts/2022/05/test.mdx";
@@ -20,7 +21,7 @@ const Home: NextPage = () => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: AppContext) {
   return {
     props: {}, // will be passed to the page component as props
   };
