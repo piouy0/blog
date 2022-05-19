@@ -9,7 +9,7 @@ interface Props {
   imgUrl?: string;
 }
 
-const siteUrl = "https://blog-knf00q0da-piouy0.vercel.app/";
+const siteUrl = "";
 const siteName = "piouy0";
 
 const BlogHead: React.FC<Props> = ({
