@@ -8,17 +8,18 @@
     "allowJs": true,
     "noEmit": true,
     "moduleResolution": "node",
-    "strict": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
+    "strict": true,
     "resolveJsonModule": true,
+    "importHelpers": true,
     "skipLibCheck": true,
+    "declaration": true,
+
     "noImplicitThis": true,
     "forceConsistentCasingInFileNames": true,
     "strictNullChecks": true,
-    "esModuleInterop": true,
-    "incremental": true,
     "baseUrl": ".",
     "paths": {
       "*": ["src/*"]

@@ -17,7 +17,8 @@
     "import" // import/export 구문의 린트를 지원하고 파일 경로 및 가져오기 이름의 철자 오류 문제를 방지
   ],
   "env": {
-    "es6": true
+    "es6": true,
+    "browser": true
   },
   "parserOptions": {
     "ecmaVersion": 2020,
@@ -31,6 +32,7 @@
       }
     }
   },
+
   "rules": {
     /** ******** GENERAL ********* */
     "camelcase": "off", // 변수이름 camelcase로 고정할 것인가
