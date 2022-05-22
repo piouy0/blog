@@ -20,11 +20,8 @@ input {
   font-family: "Nanum Gothic", sans-serif !important;
 }
 
-button:focus,
-button:active:focus,
-button.active:focus,
-button.focus,
-button:active.focus,
-button.active.focus {
+button {
   outline: none !important;
+  border: none;
+  background: none;
 }

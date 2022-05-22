@@ -15,6 +15,7 @@ const DrawerStyle = (props: DrawerStyle | null) => ({
   "& .MuiDrawer-paper": {
     left: !isMobile() && props?.left ? `${props.left}px` : 0,
     width: !isMobile() && props?.width ? `${props.width}px` : "100%",
+    background: "none",
     borderRadius: "8px 8px 0 0",
   },
 });

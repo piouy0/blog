@@ -9,7 +9,7 @@ const Floating = styled.div`
   left: 0;
   right: 0;
   top: 0;
-  background: ${themedPalette.floatingBackground};
+  background: ${themedPalette.layoutBackground};
   box-shadow: rgb(0 0 0 / 8%) 0px 0px 8px;
 `;
 

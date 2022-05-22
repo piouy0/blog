@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import { themedPalette } from "styles/theme";
+import FullWidthButton from "components/common/button/FullWidthButton";
 import DrawerHeader from "./DrawerHeader";
 
 interface Props {
@@ -17,18 +18,25 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 16px;
-  background: ${themedPalette.primaryBackground};
+  background: ${themedPalette.layoutBackground};
   scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
+const ButtonWrapper = styled.div`
+  margin-top: 36px;
+`;
+
 const DrawerContentLayout: React.FC<Props> = ({ title, handleClose, withHeader = true, children }) => {
   return (
     <Wrapper>
-      {withHeader && <DrawerHeader title="title" handleClose={() => {}} />}
+      {withHeader && <DrawerHeader title={title} handleClose={() => {}} />}
       {children}
+      <ButtonWrapper>
+        <FullWidthButton label="적용" />
+      </ButtonWrapper>
     </Wrapper>
   );
 };
