@@ -55,7 +55,7 @@ const globalDrawerActions = () => {
   );
 };
 
-export const uesGlobalDrawer = () => {
+export const useGlobalDrawer = () => {
   const state = useRecoilValue(globalDrawerState);
   const { openGlobalDrawer, closeGlobalDrawer } = globalDrawerActions();
 

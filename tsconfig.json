@@ -11,15 +11,16 @@
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
-    "strict": true,
     "resolveJsonModule": true,
     "importHelpers": true,
     "skipLibCheck": true,
     "declaration": true,
-
     "noImplicitThis": true,
     "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "strictNullChecks": true,
+    "incremental": true,
+    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
       "*": ["src/*"]

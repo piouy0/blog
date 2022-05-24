@@ -32,7 +32,7 @@ const ButtonWrapper = styled.div`
 const DrawerContentLayout: React.FC<Props> = ({ title, handleClose, withHeader = true, children }) => {
   return (
     <Wrapper>
-      {withHeader && <DrawerHeader title={title} handleClose={() => {}} />}
+      {withHeader && <DrawerHeader title={title} handleClose={handleClose} />}
       {children}
       <ButtonWrapper>
         <FullWidthButton label="적용" />

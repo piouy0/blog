@@ -29,14 +29,16 @@ const Label = styled.div`
 `;
 
 interface Props {
+  title: string;
+  label: string;
   onClick: () => void;
 }
 
-const FilterButton: React.FC<Props> = ({ onClick }) => {
+const FilterButton: React.FC<Props> = ({ title, label, onClick }) => {
   return (
     <Wrapper onClick={onClick}>
-      <Title>연도</Title>
-      <Label>Label</Label>
+      <Title>{title}</Title>
+      <Label>{label}</Label>
     </Wrapper>
   );
 };

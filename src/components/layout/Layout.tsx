@@ -3,9 +3,9 @@ import React from "react";
 
 import { themedPalette } from "styles/theme";
 import useThemeEffect from "hooks/theme/useThemeEffect";
-import Header from "./Header";
-import FloatingHeader from "./FloatingHeader";
-import Category from "./Category";
+import Header from "./header/Header";
+import FloatingHeader from "./header/FloatingHeader";
+import Category from "./category/Category";
 
 interface Props {
   children: React.ReactNode;
@@ -15,7 +15,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 16px;
   min-height: 100vh;
   background: ${themedPalette.primaryBackground};
   transition: all 0.125s ease-in;
@@ -29,10 +28,12 @@ const Container = styled.div`
 const HeaderWrapper = styled.div``;
 
 const CategoryWrapper = styled.div`
-  padding: 32px 0;
+  padding: 24px 16px;
 `;
 
-const Contents = styled.div``;
+const Contents = styled.div`
+  padding: 0 16px;
+`;
 
 const Layout: React.FC<Props> = ({ children }) => {
   useThemeEffect();

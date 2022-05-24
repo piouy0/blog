@@ -16,6 +16,7 @@ const Home: NextPage = () => {
       <BlogHead />
       <TempBoxForSceollEvent>
         <Test />
+        <img src="/assets/vercel.svg" alt="" />
       </TempBoxForSceollEvent>
     </>
   );

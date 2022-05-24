@@ -11,9 +11,7 @@ import MdxComponents from "components/MdxComponents";
 import "../css/reset.css";
 import "../css/global.css";
 
-const PageWrapper = styled.div`
-  padding: 0 16px;
-`;
+const PageWrapper = styled.div``;
 
 const BlogApp = (props: AppProps) => {
   const { Component, pageProps } = props;

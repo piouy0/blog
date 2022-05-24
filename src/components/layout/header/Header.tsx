@@ -7,7 +7,6 @@ import CloudIcon from "@mui/icons-material/Cloud";
 import GitHub from "@mui/icons-material/GitHub";
 
 import IconButton from "components/common/button/IconButton";
-import Icon from "components/common/icon/Icon";
 
 import { themedPalette } from "styles/theme";
 import useToggleTheme from "hooks/theme/useToggleTheme";
@@ -112,7 +111,7 @@ const Header: React.FC<Props> = () => {
                   <DarkModeItem>
                     <AnimatedWrapper style={style}>
                       <IconButton>
-                        <Icon icon={<DarkMode />} />
+                        <DarkMode />
                       </IconButton>
                     </AnimatedWrapper>
                   </DarkModeItem>
@@ -120,7 +119,7 @@ const Header: React.FC<Props> = () => {
                   <DarkModeItem>
                     <AnimatedWrapper style={style}>
                       <IconButton>
-                        <Icon icon={<LightMode />} />
+                        <LightMode />
                       </IconButton>
                     </AnimatedWrapper>
                   </DarkModeItem>
@@ -130,7 +129,7 @@ const Header: React.FC<Props> = () => {
           </UtilItem>
           <UtilItem>
             <IconButton>
-              <Icon icon={<GitHub />} />
+              <GitHub />
             </IconButton>
           </UtilItem>
         </Util>

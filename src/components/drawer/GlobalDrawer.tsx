@@ -1,12 +1,12 @@
 import React from "react";
 
-import { uesGlobalDrawer } from "recoil/atom/globalDrawer";
+import { useGlobalDrawer } from "recoil/atom/globalDrawer";
 import Drawer from "./drawer/Drawer";
 
 interface Props {}
 
 const GlobalDrawer: React.FC<Props> = () => {
-  const { state: drawer, closeGlobalDrawer } = uesGlobalDrawer();
+  const { state: drawer, closeGlobalDrawer } = useGlobalDrawer();
 
   const handleClose = () => {
     if (drawer.handleClose) {
