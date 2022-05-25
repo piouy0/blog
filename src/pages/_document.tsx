@@ -1,7 +1,7 @@
 import React from "react";
 import Document, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
 
-import { extractFromCookie } from "util/theme";
+import { extractFromCookie } from "utils/theme";
 
 export default class MyDocument extends Document<{ theme: string }> {
   static async getInitialProps(ctx: DocumentContext) {

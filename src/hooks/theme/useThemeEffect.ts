@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
-import { themeState, useTheme } from "recoil/atom/theme";
+import { themeState, useTheme } from "recoil/atom/theme/theme";
 
 const useThemeEffect = () => {
   const [_theme, setTheme] = useRecoilState(themeState);

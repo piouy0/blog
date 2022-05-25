@@ -8,6 +8,9 @@ import Layout from "components/layout/Layout";
 import GlobalContents from "components/GlobalContents";
 import MdxComponents from "components/MdxComponents";
 
+import muiTheme from "styles/muiTheme";
+import { ThemeProvider } from "@mui/material";
+
 import "../css/reset.css";
 import "../css/global.css";
 
@@ -18,14 +21,16 @@ const BlogApp = (props: AppProps) => {
 
   return (
     <RecoilRoot>
-      <MDXProvider components={MdxComponents}>
-        <Layout>
-          <PageWrapper id="page-wrapper">
-            <Component {...pageProps} />
-          </PageWrapper>
-        </Layout>
-        <GlobalContents />
-      </MDXProvider>
+      <ThemeProvider theme={muiTheme}>
+        <MDXProvider components={MdxComponents}>
+          <Layout>
+            <PageWrapper id="page-wrapper">
+              <Component {...pageProps} />
+            </PageWrapper>
+          </Layout>
+          <GlobalContents />
+        </MDXProvider>
+      </ThemeProvider>
     </RecoilRoot>
   );
 };

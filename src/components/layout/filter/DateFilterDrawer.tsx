@@ -1,7 +1,7 @@
 import React from "react";
 
 import Slider from "components/slider/Slider";
-import { useGlobalDrawer } from "recoil/atom/globalDrawer";
+import { useGlobalDrawer } from "recoil/atom/drawer/globalDrawer";
 import DrawerContentsLayout from "../../drawer/drawer/DrawerContentsLayout";
 
 interface Props {}

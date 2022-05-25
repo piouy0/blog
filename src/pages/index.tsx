@@ -3,28 +3,40 @@ import type { NextPage } from "next";
 import { AppContext } from "next/app";
 import styled from "@emotion/styled";
 
-import Test from "posts/2022/05/test.mdx";
 import BlogHead from "components/BlogHead";
+import getTest from "utils/post";
 
 const TempBoxForSceollEvent = styled.div`
   height: 400vh;
 `;
 
-const Home: NextPage = () => {
+interface Props {
+  dates: string[];
+}
+
+interface Props {
+  dates: string[];
+}
+
+const Home: NextPage<Props> = ({ dates }) => {
   return (
     <>
       <BlogHead />
-      <TempBoxForSceollEvent>
-        <Test />
-        <img src="/assets/vercel.svg" alt="" />
-      </TempBoxForSceollEvent>
+      <TempBoxForSceollEvent />
     </>
   );
 };
 
 export async function getServerSideProps(context: AppContext) {
+  const test = getTest();
+
+  console.log(test);
+
   return {
-    props: {}, // will be passed to the page component as props
+    props: {
+      dates: test,
+    },
   };
 }
+
 export default Home;

@@ -5,7 +5,7 @@ import { themedPalette } from "styles/theme";
 import useThemeEffect from "hooks/theme/useThemeEffect";
 import Header from "./header/Header";
 import FloatingHeader from "./header/FloatingHeader";
-import Category from "./category/Category";
+import PostFilter from "./filter/PostFilter";
 
 interface Props {
   children: React.ReactNode;
@@ -27,7 +27,7 @@ const Container = styled.div`
 
 const HeaderWrapper = styled.div``;
 
-const CategoryWrapper = styled.div`
+const PostFilterWrapper = styled.div`
   padding: 24px 16px;
 `;
 
@@ -45,9 +45,9 @@ const Layout: React.FC<Props> = ({ children }) => {
           <Header />
           <FloatingHeader />
         </HeaderWrapper>
-        <CategoryWrapper>
-          <Category />
-        </CategoryWrapper>
+        <PostFilterWrapper>
+          <PostFilter />
+        </PostFilterWrapper>
         <Contents>{children}</Contents>
       </Container>
     </Wrapper>

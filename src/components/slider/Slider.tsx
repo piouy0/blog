@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { themedPalette } from "styles/theme";
 
 const SliderStyle = () => ({
-  color: themedPalette.highlightBackground,
+  color: themedPalette.primaryColor,
 });
 
 const Wrapper = styled.div`

@@ -2,7 +2,7 @@ import React from "react";
 
 import FilterButton from "components/common/button/FilterButton";
 
-import { useGlobalDrawer } from "recoil/atom/globalDrawer";
+import { useGlobalDrawer } from "recoil/atom/drawer/globalDrawer";
 import DateFilterDrawer from "./DateFilterDrawer";
 
 interface Props {}

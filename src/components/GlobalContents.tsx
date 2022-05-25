@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 
-import { useTheme } from "recoil/atom/theme";
-import storage from "util/storage";
+import { useTheme } from "recoil/atom/theme/theme";
+import storage from "utils/storage";
+import Snackbar from "./common/snackbar/Snackbar";
 import GlobalDrawer from "./drawer/GlobalDrawer";
 import GlobalStyles from "./GlobalStyles";
 
@@ -29,6 +30,7 @@ const GlobalContents: React.FC<Props> = () => {
     <>
       <GlobalStyles />
       <GlobalDrawer />
+      <Snackbar />
     </>
   );
 };

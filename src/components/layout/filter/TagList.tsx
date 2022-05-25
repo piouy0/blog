@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-import { POST_TAGS } from "constants/tags";
+import { POST_TAGS } from "constants/post";
 import { themedPalette } from "styles/theme";
 
 const Wrapper = styled.div`
@@ -15,7 +15,7 @@ const TagItem = styled.div<{ isEnd: boolean }>`
   margin-right: ${({ isEnd }) => (isEnd ? "0px" : "8px")};
   background: ${themedPalette.iconPrimaryBackground};
   border-radius: 32px;
-  color: ${themedPalette.highlightBackground};
+  color: ${themedPalette.primaryColor};
   font-size: 0.875rem;
   cursor: pointer;
 `;

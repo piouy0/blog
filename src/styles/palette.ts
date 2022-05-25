@@ -1,91 +1,96 @@
 export interface Theme {
+  primaryColor: string;
+  secondaryColor: string;
+  tertiaryColor: string;
+
   primaryBackground: string;
   secondaryBackground: string;
-  highlightBackground: string;
+  destructiveBackground: string;
 
   primaryText: string;
   secondaryText: string;
-  tertiaryText: string;
-  quaternaryText: string;
 
   primaryBorder: string;
   secondaryBorder: string;
-  tertiaryBorder: string;
-  quaternaryBorder: string;
 
   iconPrimaryBackground: string;
   layoutBackground: string;
-  buttonBackground: string;
-
-  buttonText: string;
+  boxShadow: string;
 }
 
 const palette = {
   primary: {
-    0: "#ff1659",
-    100: "#00e9a6",
+    25: "#2BC2BD80",
+    50: "#2BC2BDC2",
+    100: "#2AC1BC",
   },
   gray: {
     0: "#FFFFFF",
-    5: "#F6F7F8",
-    10: "#EAECEE",
-    20: "#DCDDE1",
-    30: "#C1C2C7",
-    40: "#A2A3AA",
-    50: "#73757D",
-    60: "#50525A",
-    70: "#3A3C46",
-    80: "#242631",
-    85: "#20232D",
-    90: "#191B23",
-    100: "#0C0C0F",
+    5: "#FAFAFA",
+    10: "#F5F5F5",
+    20: "#EEEEEE",
+    30: "#E0E0E0",
+    40: "#BDBDBD",
+    50: "#9E9E9E",
+    60: "#757575",
+    70: "#616161",
+    80: "#424242",
+    90: "#212121",
+    100: "#121212",
+  },
+  shadow: {
+    light: "0 4px 8px rgb(0 0 0 / 15%)",
+    dark: "0 4px 6px -2px rgba(255, 255, 255, 0.05)",
+  },
+  state: {
+    error: {
+      100: "#ff1659",
+    },
+    disabled: {
+      default: "#D2D3D5",
+      bg: "#ECEEF0",
+    },
   },
 };
 
 const lightTheme = {
+  primaryColor: palette.primary[100],
+  secondaryColor: palette.primary[50],
+  tertiaryColor: palette.primary[25],
+
   primaryBackground: palette.gray[0],
   secondaryBackground: palette.gray[5],
-  highlightBackground: palette.primary[100],
-  destructiveBackground: palette.primary[0],
+  destructiveBackground: palette.state.error[100],
 
   primaryText: palette.gray[90],
   secondaryText: palette.gray[60],
-  tertiaryText: palette.gray[40],
-  quaternaryText: palette.gray[20],
 
   primaryBorder: palette.gray[10],
-  secondaryBorder: palette.gray[5],
-  tertiaryBorder: palette.gray[60],
-  quaternaryBorder: palette.gray[20],
+  secondaryBorder: palette.gray[20],
 
   iconPrimaryBackground: palette.gray[5],
-  buttonBackground: palette.primary[100],
   layoutBackground: palette.gray[0],
-
-  buttonText: palette.gray[0],
+  boxShadow: palette.shadow.light,
 };
 
 const darkTheme = {
+  primaryColor: palette.primary[100],
+  secondaryColor: palette.primary[50],
+  tertiaryColor: palette.primary[25],
+
   primaryBackground: palette.gray[100],
   secondaryBackground: palette.gray[90],
-  highlightBackground: palette.primary[100],
-  destructiveBackground: palette.primary[0],
+  destructiveBackground: palette.state.error[100],
 
   primaryText: palette.gray[0],
   secondaryText: palette.gray[30],
-  tertiaryText: palette.gray[40],
-  quaternaryText: palette.gray[50],
 
   primaryBorder: palette.gray[70],
   secondaryBorder: palette.gray[80],
-  tertiaryBorder: palette.gray[40],
-  quaternaryBorder: palette.gray[60],
 
   iconPrimaryBackground: palette.gray[80],
-  buttonBackground: palette.primary[100],
   layoutBackground: palette.gray[90],
-
-  buttonText: palette.gray[0],
+  boxShadow: palette.shadow.dark,
 };
 
 export { palette, lightTheme, darkTheme };

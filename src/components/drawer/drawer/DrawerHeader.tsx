@@ -16,7 +16,7 @@ const Title = styled.div`
 const Button = styled.div`
   cursor: pointer;
   & svg {
-    font-size: 24px;
+    font-size: 1.5rem;
     color: ${themedPalette.primaryText};
   }
 `;

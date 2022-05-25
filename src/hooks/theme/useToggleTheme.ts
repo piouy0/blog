@@ -1,5 +1,5 @@
-import { useTheme } from "recoil/atom/theme";
-import storage from "util/storage";
+import { useTheme } from "recoil/atom/theme/theme";
+import storage from "utils/storage";
 
 const useToggleTheme = () => {
   const {

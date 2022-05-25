@@ -26,7 +26,7 @@ const IconWrapper = styled.div`
 const Icon = styled.div<{ isActive: boolean }>`
   width: 24px;
   height: 24px;
-  border: 1px solid ${themedPalette.quaternaryBorder};
+  border: 1px solid ${themedPalette.secondaryBorder};
   border-radius: 24px;
   text-align: center;
   transition: border-color 0.125s ease-in;

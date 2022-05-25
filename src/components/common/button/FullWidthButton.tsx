@@ -1,5 +1,7 @@
 import { Button } from "@mui/material";
 import React from "react";
+
+import { palette } from "styles/palette";
 import { themedPalette } from "styles/theme";
 
 const FullWidthButtonStyle = () => ({
@@ -7,20 +9,20 @@ const FullWidthButtonStyle = () => ({
   height: "50px",
   lineHeight: "50px",
   padding: 0,
-  background: themedPalette.buttonBackground,
+  background: themedPalette.primaryColor,
   borderRadius: "4px",
-  color: themedPalette.buttonText,
+  color: palette.gray[0],
   fontSize: "1rem",
   fontWeight: "600",
   letterSpacing: "normal",
   transition: "opacity 0.125s ease",
   "&:hover": {
     opacity: 0.6,
-    background: themedPalette.buttonBackground,
+    background: themedPalette.primaryColor,
   },
   "&:active": {
     opacity: 1,
-    background: themedPalette.buttonBackground,
+    background: themedPalette.primaryColor,
   },
 });
 

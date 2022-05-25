@@ -24,7 +24,7 @@ const Title = styled.div`
 `;
 
 const Label = styled.div`
-  color: ${themedPalette.highlightBackground};
+  color: ${themedPalette.primaryColor};
   font-weight: 600;
 `;
 
