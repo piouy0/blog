@@ -3,8 +3,8 @@ import path from "path";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-export default function getTest() {
-  // Get file names under /posts
+export function getPostDates() {
   const fileNames = fs.readdirSync(postsDirectory);
+
   return fileNames;
 }

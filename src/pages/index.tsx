@@ -4,7 +4,8 @@ import { AppContext } from "next/app";
 import styled from "@emotion/styled";
 
 import BlogHead from "components/BlogHead";
-import getTest from "utils/post";
+
+import { getPostDates } from "utils/post";
 
 const TempBoxForSceollEvent = styled.div`
   height: 400vh;
@@ -28,13 +29,13 @@ const Home: NextPage<Props> = ({ dates }) => {
 };
 
 export async function getServerSideProps(context: AppContext) {
-  const test = getTest();
+  const dates = getPostDates();
 
-  console.log(test);
+  console.log(dates);
 
   return {
     props: {
-      dates: test,
+      dates,
     },
   };
 }
