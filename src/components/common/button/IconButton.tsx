@@ -4,11 +4,11 @@ import styled from "@emotion/styled";
 
 import { themedPalette } from "styles/theme";
 
-const IconButtonStyle = () => ({
+const IconButtonStyle = (animateBg: string) => ({
   width: "2.5rem",
   height: "2.5rem",
   "&:hover": {
-    background: themedPalette.iconPrimaryBackground,
+    background: animateBg,
   },
 });
 
@@ -24,10 +24,15 @@ const Icon = styled.div`
 interface Props {
   children: React.ReactNode;
   onClick?: () => void;
+  animateBackground?: string;
 }
 
-const IconButton: React.FC<Props> = ({ children, onClick }) => (
-  <BaseIconButton sx={IconButtonStyle} onClick={onClick}>
+const IconButton: React.FC<Props> = ({
+  children,
+  onClick,
+  animateBackground = themedPalette.iconPrimaryBackground,
+}) => (
+  <BaseIconButton sx={[IconButtonStyle(animateBackground)]} onClick={onClick}>
     <Icon>{children}</Icon>
   </BaseIconButton>
 );

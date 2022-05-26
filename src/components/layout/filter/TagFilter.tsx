@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { ClickAwayListener } from "@mui/material";
+import { useRouter } from "next/router";
 
 import ToggleButton from "components/common/button/ToggleButton";
-import { themedPalette } from "styles/theme";
-import { useRouter } from "next/router";
-import { POST_TAGS } from "constants/post";
 import Button from "components/common/button/Button";
+
+import { themedPalette } from "styles/theme";
+import { POST_TAGS } from "constants/post";
 import { HOME_URL } from "constants/url";
+import { useSnackbar } from "recoil/atom/snackbar/snackbar";
+import { MESSAGE_STATUS } from "utils/state";
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,7 +25,7 @@ const Divider = styled.div`
   background: ${themedPalette.primaryBorder};
 `;
 
-const Test = styled.div``;
+const Container = styled.div``;
 
 const Modal = styled.div`
   position: absolute;
@@ -82,6 +85,7 @@ const ButtonWrapper = styled.div`
 interface Props {}
 
 const TagFilter: React.FC<Props> = () => {
+  const { openSnackbar } = useSnackbar();
   const [isModalVisible, setModalVisible] = useState<boolean>(false);
   const [isAcviceTagList, setAcviceTagList] = useState<string[]>([]);
   const router = useRouter();
@@ -91,9 +95,21 @@ const TagFilter: React.FC<Props> = () => {
     setModalVisible(prev => !prev);
   };
 
-  const handleApply = () => {
-    setModalVisible(false);
+  const handleOpenSuccessSnackbar = () => {
+    openSnackbar({
+      status: MESSAGE_STATUS.SUCCESS,
+      message: "적용되었습니다 :D",
+    });
+  };
 
+  const handleOpenErrorSnackbar = () => {
+    openSnackbar({
+      status: MESSAGE_STATUS.ERROR,
+      message: "최대 선택 가능한 태그는 5개입니다.",
+    });
+  };
+
+  const handleRoute = () => {
     router.push({
       pathname: HOME_URL,
       query: {
@@ -101,6 +117,14 @@ const TagFilter: React.FC<Props> = () => {
         tag: isAcviceTagList,
       },
     });
+  };
+
+  const handleApply = () => {
+    setModalVisible(false);
+
+    handleOpenSuccessSnackbar();
+
+    handleRoute();
   };
 
   useEffect(() => {
@@ -123,7 +147,7 @@ const TagFilter: React.FC<Props> = () => {
   return (
     <Wrapper>
       <Divider />
-      <Test>
+      <Container>
         <ToggleButton label="개발전체" handleClick={handleToggle} />
         {isModalVisible && (
           <ClickAwayListener onClickAway={handleToggle}>
@@ -138,6 +162,8 @@ const TagFilter: React.FC<Props> = () => {
                       setAcviceTagList(prev => prev.filter(activeTag => activeTag !== tag));
                     } else if (isAcviceTagList.length < 5) {
                       setAcviceTagList(prev => [...prev, tag]);
+                    } else {
+                      handleOpenErrorSnackbar();
                     }
                   };
 
@@ -156,7 +182,7 @@ const TagFilter: React.FC<Props> = () => {
             </Modal>
           </ClickAwayListener>
         )}
-      </Test>
+      </Container>
     </Wrapper>
   );
 };

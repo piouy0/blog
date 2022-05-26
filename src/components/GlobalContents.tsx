@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useSnackbar } from "recoil/atom/snackbar/snackbar";
 
 import { useTheme } from "recoil/atom/theme/theme";
 import storage from "utils/storage";
@@ -10,6 +11,7 @@ interface Props {}
 
 const GlobalContents: React.FC<Props> = () => {
   const { enableDarkMode, enableLightMode } = useTheme();
+  const { state: snackbar, closeSnackbar } = useSnackbar();
 
   const loadTheme = () => {
     const theme = storage.getItem("theme");
@@ -22,6 +24,13 @@ const GlobalContents: React.FC<Props> = () => {
     document.body.dataset.theme = theme;
   };
 
+  const handleSnackbarClose = () => {
+    if (snackbar.handleClose) {
+      snackbar.handleClose();
+    }
+    closeSnackbar();
+  };
+
   useEffect(() => {
     loadTheme();
   });
@@ -30,7 +39,12 @@ const GlobalContents: React.FC<Props> = () => {
     <>
       <GlobalStyles />
       <GlobalDrawer />
-      <Snackbar />
+      <Snackbar
+        open={snackbar.open}
+        handleClose={handleSnackbarClose}
+        message={snackbar.message}
+        status={snackbar.status}
+      />
     </>
   );
 };
