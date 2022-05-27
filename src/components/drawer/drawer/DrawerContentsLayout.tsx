@@ -5,13 +5,6 @@ import { themedPalette } from "styles/theme";
 import FullWidthButton from "components/common/button/FullWidthButton";
 import DrawerHeader from "./DrawerHeader";
 
-interface Props {
-  title?: string;
-  handleClose?: () => void;
-  withHeader?: boolean;
-  children: React.ReactNode;
-}
-
 const Wrapper = styled.div`
   overflow-y: scroll;
   overflow: hidden;
@@ -29,13 +22,21 @@ const ButtonWrapper = styled.div`
   margin-top: 36px;
 `;
 
-const DrawerContentLayout: React.FC<Props> = ({ title, handleClose, withHeader = true, children }) => {
+interface Props {
+  title?: string;
+  handleClose?: () => void;
+  handleApply: () => void;
+  withHeader?: boolean;
+  children: React.ReactNode;
+}
+
+const DrawerContentLayout: React.FC<Props> = ({ title, handleClose, handleApply, withHeader = true, children }) => {
   return (
     <Wrapper>
       {withHeader && <DrawerHeader title={title} handleClose={handleClose} />}
       {children}
       <ButtonWrapper>
-        <FullWidthButton label="적용" />
+        <FullWidthButton label="적용" onClick={handleApply} />
       </ButtonWrapper>
     </Wrapper>
   );

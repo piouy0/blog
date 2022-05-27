@@ -9,7 +9,6 @@ import ToggleButton from "components/common/button/ToggleButton";
 import { LAYER_2_ZINDEX } from "styles/constants";
 import { themedPalette } from "styles/theme";
 import { ALL_GROUP, POST_GROUP, POST_LABEL } from "constants/post";
-import { HOME_URL } from "constants/url";
 
 const Wrapper = styled.div``;
 
@@ -60,15 +59,24 @@ const GroupFilter: React.FC<Props> = () => {
     setSelectVisible(prev => !prev);
   };
 
-  const handleGroupClick = (group: string) => () => {
-    setSelectVisible(false);
+  const handleRoute = (group: string) => {
+    const { query } = router;
+
+    delete query.tag;
 
     router.push({
-      pathname: HOME_URL,
+      pathname: router.route,
       query: {
+        ...query,
         group,
       },
     });
+  };
+
+  const handleGroupClick = (group: string) => () => {
+    setSelectVisible(false);
+
+    handleRoute(group);
   };
 
   return (

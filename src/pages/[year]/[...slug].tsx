@@ -6,8 +6,6 @@ import { useRouter } from "next/router";
 const Slug: NextPage = props => {
   const router = useRouter();
 
-  console.log(router);
-
   return (
     <>
       <div>Test</div>

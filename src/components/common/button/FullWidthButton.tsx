@@ -28,11 +28,12 @@ const FullWidthButtonStyle = () => ({
 
 interface Props {
   label: string;
+  onClick: () => void;
 }
 
-const FullWidthButton: React.FC<Props> = ({ label }) => {
+const FullWidthButton: React.FC<Props> = ({ label, onClick }) => {
   return (
-    <Button fullWidth sx={FullWidthButtonStyle}>
+    <Button fullWidth sx={FullWidthButtonStyle} onClick={onClick}>
       {label}
     </Button>
   );

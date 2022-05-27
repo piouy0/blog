@@ -1,25 +1,20 @@
 import React from "react";
 import type { NextPage } from "next";
-import { AppContext } from "next/app";
 import styled from "@emotion/styled";
 
 import BlogHead from "components/BlogHead";
 
-import { getPostDates } from "utils/post";
+import { getAllPosts } from "utils/post";
 
 const TempBoxForSceollEvent = styled.div`
   height: 400vh;
 `;
 
 interface Props {
-  dates: string[];
+  posts: any;
 }
 
-interface Props {
-  dates: string[];
-}
-
-const Home: NextPage<Props> = ({ dates }) => {
+const Home: NextPage<Props> = () => {
   return (
     <>
       <BlogHead />
@@ -28,16 +23,16 @@ const Home: NextPage<Props> = ({ dates }) => {
   );
 };
 
-export async function getServerSideProps(context: AppContext) {
-  const dates = getPostDates();
+export const getStaticProps = () => {
+  const posts = getAllPosts(); // the argument has no effect yet
 
-  console.log(dates);
+  console.log(posts);
 
   return {
     props: {
-      dates,
+      // posts,
     },
   };
-}
+};
 
 export default Home;

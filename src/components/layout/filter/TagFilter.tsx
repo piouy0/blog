@@ -9,7 +9,6 @@ import Button from "components/common/button/Button";
 
 import { themedPalette } from "styles/theme";
 import { POST_TAGS } from "constants/post";
-import { HOME_URL } from "constants/url";
 import { useSnackbar } from "recoil/atom/snackbar/snackbar";
 import { MESSAGE_STATUS } from "utils/state";
 
@@ -111,9 +110,9 @@ const TagFilter: React.FC<Props> = () => {
 
   const handleRoute = () => {
     router.push({
-      pathname: HOME_URL,
+      pathname: router.route,
       query: {
-        group: router.query.group,
+        ...router.query,
         tag: isAcviceTagList,
       },
     });
