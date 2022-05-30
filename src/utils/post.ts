@@ -4,6 +4,7 @@ import { sync } from "glob";
 import frontMatter from "front-matter";
 
 export interface FrontMatter {
+  thumbnail: string;
   title: string;
   group: string[];
   tags: string[];
@@ -60,11 +61,11 @@ export function getAllPosts() {
 
       return acc;
     }, [])
-    .sort((one, another) => {
-      if (one.frontMatter.date < another.frontMatter.date) {
+    .sort((a, b) => {
+      if (a.frontMatter.date < b.frontMatter.date) {
         return 1;
       }
-      if (one.frontMatter.date > another.frontMatter.date) {
+      if (a.frontMatter.date > b.frontMatter.date) {
         return -1;
       }
       return 0;

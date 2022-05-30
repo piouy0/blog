@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 
 import { themedPalette } from "styles/theme";
+import { LAYER_3_ZINDEX } from "styles/constants";
 import Header from "./Header";
 
 const Floating = styled.div`
@@ -10,6 +11,7 @@ const Floating = styled.div`
   right: 0;
   top: 0;
   background: ${themedPalette.layoutBackground};
+  z-index: ${LAYER_3_ZINDEX};
   box-shadow: rgb(0 0 0 / 8%) 0px 0px 8px;
 `;
 

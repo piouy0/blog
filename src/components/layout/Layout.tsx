@@ -28,12 +28,10 @@ const Container = styled.div`
 const HeaderWrapper = styled.div``;
 
 const PostFilterWrapper = styled.div`
-  padding: 24px 16px;
+  padding: 24px 0;
 `;
 
-const Contents = styled.div`
-  padding: 0 16px;
-`;
+const Contents = styled.div``;
 
 const Layout: React.FC<Props> = ({ children }) => {
   useThemeEffect();

@@ -11,6 +11,7 @@ import { themedPalette } from "styles/theme";
 import { POST_TAGS } from "constants/post";
 import { useSnackbar } from "recoil/atom/snackbar/snackbar";
 import { MESSAGE_STATUS } from "utils/state";
+import { LAYER_2_ZINDEX } from "styles/constants";
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,12 +31,13 @@ const Modal = styled.div`
   position: absolute;
   left: 0;
   top: 100%;
+  z-index: ${LAYER_2_ZINDEX};
   max-width: 800px;
   width: calc(100% - 160px);
   margin-top: 12px;
   background: ${themedPalette.primaryBackground};
   border: 1px solid ${themedPalette.secondaryBorder};
-  box-shadow: ${themedPalette.boxShadow};
+  box-shadow: ${themedPalette.modalShadow};
   border-radius: 6px;
 `;
 

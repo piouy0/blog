@@ -24,7 +24,7 @@ const GroupList = styled.div`
   border: 1px solid ${themedPalette.secondaryBorder};
   border-radius: 6px;
   background: ${themedPalette.primaryBackground};
-  box-shadow: ${themedPalette.boxShadow};
+  box-shadow: ${themedPalette.modalShadow};
 `;
 
 const GroupItem = styled.div<{ isActive: boolean }>`

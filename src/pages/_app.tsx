@@ -18,9 +18,6 @@ const PageWrapper = styled.div``;
 
 const BlogApp = (props: AppProps) => {
   const { Component, pageProps } = props;
-  let test = 0;
-
-  console.log(test);
 
   return (
     <RecoilRoot>
@@ -28,14 +25,6 @@ const BlogApp = (props: AppProps) => {
         <MDXProvider components={MdxComponents}>
           <Layout>
             <PageWrapper id="page-wrapper">
-              <button
-                onClick={() => {
-                  test += 1;
-                  console.log(test);
-                }}
-              >
-                button
-              </button>
               <Component {...pageProps} />
             </PageWrapper>
           </Layout>

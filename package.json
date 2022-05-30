@@ -16,6 +16,7 @@
     "@mui/material": "^5.7.0",
     "@next/mdx": "^12.1.6",
     "@types/mdx": "^2.0.1",
+    "dayjs": "^1.11.2",
     "front-matter": "^4.0.2",
     "glob": "^8.0.3",
     "immer": "^9.0.12",

@@ -13,9 +13,12 @@ export interface Theme {
   primaryBorder: string;
   secondaryBorder: string;
 
+  boxShadow: string;
+  boxHighlightingShadow: string;
+  modalShadow: string;
+
   iconPrimaryBackground: string;
   layoutBackground: string;
-  boxShadow: string;
 }
 
 const palette = {
@@ -39,8 +42,15 @@ const palette = {
     100: "#121212",
   },
   shadow: {
-    light: "0 4px 8px rgb(0 0 0 / 15%)",
-    dark: "0 4px 6px -2px rgba(255, 255, 255, 0.05)",
+    light: {
+      25: "0px 4px 16px 0px rgb(0 0 0 / 4%)",
+      50: "0px 12px 20px 0px rgb(0 0 0 / 8%)",
+      100: "0 4px 8px rgb(0 0 0 / 15%)",
+    },
+    dark: {
+      0: "none",
+      100: "0 4px 6px -2px rgba(255, 255, 255, 0.05)",
+    },
   },
   state: {
     error: {
@@ -59,7 +69,7 @@ const lightTheme = {
   tertiaryColor: palette.primary[25],
 
   primaryBackground: palette.gray[0],
-  secondaryBackground: palette.gray[5],
+  secondaryBackground: palette.gray[10],
   destructiveBackground: palette.state.error[100],
 
   primaryText: palette.gray[90],
@@ -68,9 +78,12 @@ const lightTheme = {
   primaryBorder: palette.gray[10],
   secondaryBorder: palette.gray[20],
 
+  boxShadow: palette.shadow.light[25],
+  boxHighlightingShadow: palette.shadow.light[50],
+  modalShadow: palette.shadow.light[100],
+
   iconPrimaryBackground: palette.gray[5],
   layoutBackground: palette.gray[0],
-  boxShadow: palette.shadow.light,
 };
 
 const darkTheme = {
@@ -88,9 +101,12 @@ const darkTheme = {
   primaryBorder: palette.gray[70],
   secondaryBorder: palette.gray[80],
 
+  boxShadow: palette.shadow.dark[25],
+  boxHighlightingShadow: palette.shadow.dark[50],
+  modalShadow: palette.shadow.dark[100],
+
   iconPrimaryBackground: palette.gray[80],
   layoutBackground: palette.gray[90],
-  boxShadow: palette.shadow.dark,
 };
 
 export { palette, lightTheme, darkTheme };
