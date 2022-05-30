@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import type { NextPage } from "next";
 import styled from "@emotion/styled";
 
@@ -7,29 +7,30 @@ import BlogHead from "components/BlogHead";
 import { getAllPosts, Post } from "utils/post";
 import { themedPalette } from "styles/theme";
 import { getDateString } from "utils/date";
+import { DEFAULT_NUMBER_OF_POSTS } from "constants/post";
 
-const TempBoxForSceollEvent = styled.div`
-  height: 400vh;
+const Wrapper = styled.div`
+  padding-top: 16px;
 `;
 
 const PostContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin: -16px;
 `;
 
 const PostBox = styled.div`
   overflow: hidden;
-  width: 33.3%;
+  width: 320px;
   margin: 16px;
   background: ${themedPalette.layoutBackground};
   border-radius: 4px;
-  box-shadow: ${themedPalette.boxShadow};
   transition: box-shadow 0.25s ease-in, transform 0.25s ease-in;
   cursor: pointer;
 
   &:hover {
     box-shadow: ${themedPalette.boxHighlightingShadow};
-    transform: translateY(-5%);
+    transform: translateY(-4%);
   }
 `;
 
@@ -80,34 +81,35 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ posts }) => {
-  return (
-    <>
-      <BlogHead />
-      <TempBoxForSceollEvent>
-        <PostContainer>
-          {posts.map(post => {
-            const { frontMatter } = post;
+  const [temp, setTemp] = useState([...posts]);
 
-            return (
-              <PostBox key={frontMatter.title}>
-                <Thumbnail>
-                  <img src={frontMatter.thumbnail} />
-                </Thumbnail>
-                <Contents>
-                  <Title>{frontMatter.title}</Title>
-                  <Description>{frontMatter.description}</Description>
-                  <Date>{getDateString(frontMatter.date)}</Date>
-                </Contents>
-              </PostBox>
-            );
-          })}
-        </PostContainer>
-      </TempBoxForSceollEvent>
-    </>
+  return (
+    <Wrapper>
+      <BlogHead />
+      <PostContainer>
+        {temp.map(post => {
+          const { frontMatter } = post;
+
+          return (
+            <PostBox key={frontMatter.title}>
+              <Thumbnail>
+                <img src={frontMatter.thumbnail} />
+              </Thumbnail>
+              <Contents>
+                <Title>{frontMatter.title}</Title>
+                <Description>{frontMatter.description}</Description>
+                <Date>{getDateString(frontMatter.date)}</Date>
+              </Contents>
+            </PostBox>
+          );
+        })}
+      </PostContainer>
+    </Wrapper>
   );
 };
 
 export const getStaticProps = () => {
+  // TODO : Paging 처리 고민하기
   const posts = getAllPosts().slice(0);
 
   return {

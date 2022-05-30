@@ -1,3 +1,5 @@
+export const DEFAULT_NUMBER_OF_POSTS = 15;
+
 export const ALL_GROUP = "all";
 export const ALL_LABEL = "전체";
 
