@@ -1,15 +1,12 @@
 import React from "react";
 import { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
-import { MDXProvider } from "@mdx-js/react";
 import styled from "@emotion/styled";
+import { ThemeProvider } from "@mui/material";
 
-import Layout from "components/layout/Layout";
 import GlobalContents from "components/GlobalContents";
-import MdxComponents from "components/MdxComponents";
 
 import muiTheme from "styles/muiTheme";
-import { ThemeProvider } from "@mui/material";
 
 import "../css/reset.css";
 import "../css/global.css";
@@ -22,14 +19,10 @@ const BlogApp = (props: AppProps) => {
   return (
     <RecoilRoot>
       <ThemeProvider theme={muiTheme}>
-        <MDXProvider components={MdxComponents}>
-          <Layout>
-            <PageWrapper id="page-wrapper">
-              <Component {...pageProps} />
-            </PageWrapper>
-          </Layout>
-          <GlobalContents />
-        </MDXProvider>
+        <PageWrapper id="page-wrapper">
+          <Component {...pageProps} />
+        </PageWrapper>
+        <GlobalContents />
       </ThemeProvider>
     </RecoilRoot>
   );

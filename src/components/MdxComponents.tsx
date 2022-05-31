@@ -26,10 +26,21 @@ const H3 = styled(TitleCommonStyle)`
   font-size: 1.5rem;
 `;
 
+const CodeWrapper = styled.pre`
+  padding: 16px;
+`;
+
+const CodeBlock = styled.code``;
+
 const MdxComponents: IMDXComponents = {
   h1: props => <H1 {...props} />,
   h2: props => <H2 {...props} />,
   h3: props => <H3 {...props} />,
+  pre: props => (
+    <CodeWrapper>
+      <CodeBlock {...props} />
+    </CodeWrapper>
+  ),
 };
 
 export default MdxComponents;

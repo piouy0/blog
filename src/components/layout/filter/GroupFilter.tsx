@@ -59,7 +59,9 @@ const GroupFilter: React.FC<Props> = () => {
     setSelectVisible(prev => !prev);
   };
 
-  const handleRoute = (group: string) => {
+  const handleGroupClick = (group: string) => () => {
+    setSelectVisible(false);
+
     const { query } = router;
 
     delete query.tag;
@@ -71,12 +73,6 @@ const GroupFilter: React.FC<Props> = () => {
         group,
       },
     });
-  };
-
-  const handleGroupClick = (group: string) => () => {
-    setSelectVisible(false);
-
-    handleRoute(group);
   };
 
   return (

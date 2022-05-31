@@ -10,6 +10,8 @@ import IconButton from "components/common/button/IconButton";
 
 import { themedPalette } from "styles/theme";
 import useToggleTheme from "hooks/theme/useToggleTheme";
+import { useRouter } from "next/router";
+import { HOME_URL } from "constants/url";
 
 const Wrapper = styled.div`
   /* for floating banner */
@@ -71,6 +73,7 @@ interface Props {}
 
 const Header: React.FC<Props> = () => {
   const [theme, toggle] = useToggleTheme();
+  const router = useRouter();
 
   const isDark = theme === "dark";
 
@@ -93,10 +96,14 @@ const Header: React.FC<Props> = () => {
     },
   });
 
+  const handleLogoClick = () => {
+    router.push(HOME_URL);
+  };
+
   return (
     <Wrapper>
       <Container>
-        <LogoWrapper>
+        <LogoWrapper onClick={handleLogoClick}>
           <LogoIcon>
             <CloudIcon />
           </LogoIcon>

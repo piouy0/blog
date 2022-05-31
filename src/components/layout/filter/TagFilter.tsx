@@ -110,7 +110,11 @@ const TagFilter: React.FC<Props> = () => {
     });
   };
 
-  const handleRoute = () => {
+  const handleApply = () => {
+    setModalVisible(false);
+
+    handleOpenSuccessSnackbar();
+
     router.push({
       pathname: router.route,
       query: {
@@ -118,14 +122,6 @@ const TagFilter: React.FC<Props> = () => {
         tag: isAcviceTagList,
       },
     });
-  };
-
-  const handleApply = () => {
-    setModalVisible(false);
-
-    handleOpenSuccessSnackbar();
-
-    handleRoute();
   };
 
   useEffect(() => {

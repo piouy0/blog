@@ -7,10 +7,6 @@ import Header from "./header/Header";
 import FloatingHeader from "./header/FloatingHeader";
 import PostFilter from "./filter/PostFilter";
 
-interface Props {
-  children: React.ReactNode;
-}
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,7 +29,12 @@ const PostFilterWrapper = styled.div`
 
 const Contents = styled.div``;
 
-const Layout: React.FC<Props> = ({ children }) => {
+interface Props {
+  children: React.ReactNode;
+  withFilter?: boolean;
+}
+
+const Layout: React.FC<Props> = ({ children, withFilter = false }) => {
   useThemeEffect();
 
   return (
@@ -43,9 +44,11 @@ const Layout: React.FC<Props> = ({ children }) => {
           <Header />
           <FloatingHeader />
         </HeaderWrapper>
-        <PostFilterWrapper>
-          <PostFilter />
-        </PostFilterWrapper>
+        {withFilter && (
+          <PostFilterWrapper>
+            <PostFilter />
+          </PostFilterWrapper>
+        )}
         <Contents>{children}</Contents>
       </Container>
     </Wrapper>

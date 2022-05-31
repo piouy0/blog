@@ -69,7 +69,7 @@ const lightTheme = {
   tertiaryColor: palette.primary[25],
 
   primaryBackground: palette.gray[0],
-  secondaryBackground: palette.gray[10],
+  secondaryBackground: palette.gray[5],
   destructiveBackground: palette.state.error[100],
 
   primaryText: palette.gray[90],

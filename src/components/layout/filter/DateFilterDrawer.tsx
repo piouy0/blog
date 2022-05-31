@@ -20,7 +20,7 @@ const DateFilterDrawer: React.FC<Props> = () => {
     setDates(newValue as number[]);
   };
 
-  const handleRoute = () => {
+  const handleApply = () => {
     const queryYear = dates[0] === dates[1] ? dates[0] : dates;
 
     router.push({
@@ -30,10 +30,6 @@ const DateFilterDrawer: React.FC<Props> = () => {
         year: queryYear,
       },
     });
-  };
-
-  const handleApply = () => {
-    handleRoute();
   };
 
   return (

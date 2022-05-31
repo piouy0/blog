@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import type { NextPage } from "next";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
 import BlogHead from "components/BlogHead";
+import Layout from "components/layout/Layout";
 
 import { getAllPosts, Post } from "utils/post";
 import { themedPalette } from "styles/theme";
@@ -25,6 +27,7 @@ const PostBox = styled.div`
   margin: 16px;
   background: ${themedPalette.layoutBackground};
   border-radius: 4px;
+  box-shadow: ${themedPalette.boxShadow};
   transition: box-shadow 0.25s ease-in, transform 0.25s ease-in;
   cursor: pointer;
 
@@ -81,36 +84,44 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ posts }) => {
-  const [temp, setTemp] = useState([...posts]);
+  const router = useRouter();
+
+  const handleRoute = slug => () => {
+    router.push(slug);
+  };
 
   return (
-    <Wrapper>
-      <BlogHead />
-      <PostContainer>
-        {temp.map(post => {
-          const { frontMatter } = post;
+    <Layout withFilter={true}>
+      <>
+        <BlogHead />
+      </>
+      <Wrapper>
+        <PostContainer>
+          {posts.map(post => {
+            const { frontMatter, fields } = post;
 
-          return (
-            <PostBox key={frontMatter.title}>
-              <Thumbnail>
-                <img src={frontMatter.thumbnail} />
-              </Thumbnail>
-              <Contents>
-                <Title>{frontMatter.title}</Title>
-                <Description>{frontMatter.description}</Description>
-                <Date>{getDateString(frontMatter.date)}</Date>
-              </Contents>
-            </PostBox>
-          );
-        })}
-      </PostContainer>
-    </Wrapper>
+            return (
+              <PostBox key={frontMatter.title} onClick={handleRoute(fields.slug)}>
+                <Thumbnail>
+                  <img src={frontMatter.thumbnail} />
+                </Thumbnail>
+                <Contents>
+                  <Title>{frontMatter.title}</Title>
+                  <Description>{frontMatter.description}</Description>
+                  <Date>{getDateString(frontMatter.date)}</Date>
+                </Contents>
+              </PostBox>
+            );
+          })}
+        </PostContainer>
+      </Wrapper>
+    </Layout>
   );
 };
 
 export const getStaticProps = () => {
   // TODO : Paging 처리 고민하기
-  const posts = getAllPosts().slice(0);
+  const posts: Post[] = getAllPosts().slice(0);
 
   return {
     props: {
