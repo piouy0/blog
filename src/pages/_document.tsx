@@ -19,7 +19,14 @@ export default class MyDocument extends Document<{ theme: string }> {
     const { theme } = this.props;
     return (
       <Html>
-        <Head />
+        <Head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" cross-origin={true} />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans:wght@400;500;700&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body data-theme={theme}>
           <Main />
           <NextScript />
