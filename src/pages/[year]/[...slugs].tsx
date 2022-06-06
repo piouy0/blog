@@ -75,7 +75,6 @@ export const getStaticProps = async ({ params }) => {
 
   if (post) {
     const source = await parseMarkdownToMdx(post.body, post.path);
-
     return {
       props: {
         post,

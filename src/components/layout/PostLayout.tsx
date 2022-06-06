@@ -1,4 +1,5 @@
 import React from "react";
+import { renderToString } from "react-dom/server";
 import styled from "@emotion/styled";
 
 import BlogHead from "components/BlogHead";
@@ -12,12 +13,14 @@ const PostContent = styled.div``;
 const PostFooter = styled.div``;
 
 interface Props {
-  children: React.ReactNode;
+  children: any;
   frontMatter: FrontMatter;
   slug: string;
 }
 
 const PostLayout: React.FC<Props> = ({ children, frontMatter, slug }) => {
+  const contentString = renderToString(children);
+
   return (
     <>
       {/* TODO : next-seo로 seo 변경 */}
