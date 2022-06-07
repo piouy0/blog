@@ -11,17 +11,13 @@ import muiTheme from "styles/muiTheme";
 import "../css/reset.css";
 import "../css/global.css";
 
-const PageWrapper = styled.div``;
-
 const BlogApp = (props: AppProps) => {
   const { Component, pageProps } = props;
 
   return (
     <RecoilRoot>
       <ThemeProvider theme={muiTheme}>
-        <PageWrapper id="page-wrapper">
-          <Component {...pageProps} />
-        </PageWrapper>
+        <Component {...pageProps} />
         <GlobalContents />
       </ThemeProvider>
     </RecoilRoot>

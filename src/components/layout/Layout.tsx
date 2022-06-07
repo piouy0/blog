@@ -17,17 +17,22 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-  max-width: 1024px;
   width: 100%;
 `;
 
 const HeaderWrapper = styled.div``;
 
+const Contents = styled.div`
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+`;
+
 const PostFilterWrapper = styled.div`
   padding: 24px 0;
 `;
 
-const Contents = styled.div``;
+const Page = styled.div``;
 
 interface Props {
   children: React.ReactNode;
@@ -44,12 +49,14 @@ const Layout: React.FC<Props> = ({ children, withFilter = false }) => {
           <Header />
           <FloatingHeader />
         </HeaderWrapper>
-        {withFilter && (
-          <PostFilterWrapper>
-            <PostFilter />
-          </PostFilterWrapper>
-        )}
-        <Contents>{children}</Contents>
+        <Contents>
+          {withFilter && (
+            <PostFilterWrapper>
+              <PostFilter />
+            </PostFilterWrapper>
+          )}
+          <Page id="page-wrapper">{children}</Page>
+        </Contents>
       </Container>
     </Wrapper>
   );

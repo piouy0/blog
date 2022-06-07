@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 
 import { themedPalette } from "styles/theme";
 import { LAYER_3_ZINDEX } from "styles/constants";
+import { getScrollTop } from "utils/utils";
 import Header from "./Header";
 
 const Floating = styled.div`
@@ -28,7 +29,7 @@ const FloatingHeader: React.FC<Props> = () => {
   const transitionPoint = useRef(0);
 
   const onScroll = useCallback(() => {
-    const scrollTop = window.scrollY;
+    const scrollTop = getScrollTop();
     const nextDirection = prevScrollTop.current > scrollTop ? "UP" : "DOWN";
 
     if (prevDirection.current === "DOWN" && nextDirection === "UP") {
@@ -44,7 +45,7 @@ const FloatingHeader: React.FC<Props> = () => {
       setVisible(false);
     }
 
-    console.log(-1 * height + transitionPoint.current - scrollTop);
+    // console.log(-1 * height + transitionPoint.current - scrollTop);
 
     setMarginTop(Math.min(0, -1 * height + transitionPoint.current - scrollTop));
 

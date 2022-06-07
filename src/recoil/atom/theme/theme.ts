@@ -1,7 +1,6 @@
 import produce from "immer";
 import { useMemo } from "react";
 import { atom, useRecoilValue, useSetRecoilState } from "recoil";
-import storage from "utils/storage";
 
 export interface ThemeState {
   theme: "light" | "dark" | "default";

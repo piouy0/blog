@@ -12,12 +12,21 @@ import { themedPalette } from "styles/theme";
 import useToggleTheme from "hooks/theme/useToggleTheme";
 import { useRouter } from "next/router";
 import { HOME_URL } from "constants/url";
+import { breakpoints, devices } from "styles/devices";
 
 const Wrapper = styled.div`
   /* for floating banner */
-  max-width: 1024px;
+  max-width: ${breakpoints.md}px;
   width: 100%;
   margin: 0 auto;
+
+  ${devices.largeDesktop} {
+    max-width: ${breakpoints.lg}px;
+  }
+
+  ${devices.extraLargeDesktop} {
+    max-width: ${breakpoints.xl}px;
+  }
 `;
 
 const Container = styled.div`

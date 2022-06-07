@@ -1,5 +1,6 @@
 import { serialize } from "next-mdx-remote/serialize";
 import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
 
 // remark-math remark-prism  unist-util-visit unist rehype-autolink-headings rehype-katex
 
@@ -10,7 +11,9 @@ export const parseMarkdownToMdx = (body: string, path: string) => {
       remarkPlugins: [
         remarkGfm, // GFM 지원(자동 링크 리터럴, 각주, 취소선, 표, 작업 목록)
       ],
-      rehypePlugins: [],
+      rehypePlugins: [
+        rehypeSlug, // 타이틀 텍스트를 아이디로 추가
+      ],
     },
   });
 };
