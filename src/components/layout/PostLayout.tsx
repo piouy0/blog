@@ -1,163 +1,55 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { css } from "@emotion/react";
+import React, { useEffect } from "react";
+import { renderToString } from "react-dom/server";
 import styled from "@emotion/styled";
-import { useToc } from "recoil/atom/toc/toc";
+import { TocState, useToc } from "recoil/atom/toc/toc";
 
-import Sticky from "components/stickey";
+import BlogHead from "components/BlogHead";
 
-import { devices } from "styles/devices";
-import { themedPalette } from "styles/theme";
-import { getScrollTop } from "utils/utils";
+import { FrontMatter } from "utils/post";
+import { parseHeadings } from "utils/heading";
+import PostToc from "./PostToc";
 
 const Wrapper = styled.div`
-  position: relative;
-  margin-top: 32px;
+  width: 768px;
+  margin: 0 auto;
 `;
 
-const TocContainer = styled.div`
-  ${devices.largeDesktop} {
-    position: absolute;
-    left: 100%;
+const PostHeader = styled.div``;
+
+const Post = styled.div`
+  & img {
+    width: 100%;
   }
 `;
 
-const TocList = styled(Sticky)`
-  width: 240px;
-  margin-left: 80px;
-  padding: 4px 12px;
-  border-left: 2px solid ${themedPalette.secondaryBorder};
-`;
+const PostFooter = styled.div``;
 
-interface TocItem {
-  isActive: boolean;
-  marginLeft: number;
-  isEnd: boolean;
+interface Props {
+  children: any;
+  frontMatter: FrontMatter;
+  slug: string;
 }
 
-const TocItem = styled.div<TocItem>`
-  margin-left: ${({ marginLeft }) => `${marginLeft}px`};
-  margin-bottom: ${({ isEnd }) => (isEnd ? "unset" : "4px")};
-  font-size: 14px;
-  & > a {
-    display: block;
-    line-height: 1.5;
-    text-decoration: none;
-    color: ${themedPalette.secondaryText};
-    transition: color 0.125s ease;
-    &:hover {
-      color: ${themedPalette.primaryText};
-    }
-
-    ${({ isActive }) =>
-      isActive &&
-      css`
-        color: ${themedPalette.primaryText};
-      `}
-  }
-`;
-
-interface Props {}
-
-const Toc: React.FC<Props> = () => {
-  const [toc] = useToc();
-  const [activeId, setActiveId] = useState<string | null>(null);
-  const [headingTops, setHeadingTops] = useState<{ id: string; top: number }[] | null>(null);
-
-  const updateTocPositions = useCallback(() => {
-    if (!toc) return;
-
-    const scrollTop = getScrollTop();
-    const headingTops = toc.map(({ id }) => {
-      const el = document.getElementById(id);
-
-      if (!el) {
-        return {
-          id,
-          top: 0,
-        };
-      }
-
-      const top = el.getBoundingClientRect().top + scrollTop;
-
-      return {
-        id,
-        top,
-      };
-    });
-
-    setHeadingTops(headingTops);
-  }, [toc]);
-
-  const onScroll = useCallback(() => {
-    const scrollTop = getScrollTop();
-    if (!headingTops) return;
-
-    const currentHeading = [...headingTops].reverse().find(headingTop => scrollTop >= headingTop.top - 4);
-
-    if (!currentHeading) {
-      setActiveId(null);
-      return;
-    }
-
-    setActiveId(currentHeading.id);
-  }, [headingTops]);
+const PostLayout: React.FC<Props> = ({ children, frontMatter, slug }) => {
+  const [_, setToc] = useToc();
 
   useEffect(() => {
-    updateTocPositions();
+    const contentString = renderToString(children);
+    const toc: TocState = parseHeadings(contentString);
 
-    let prevScrollHeight = document.body.scrollHeight;
-    let timeoutId: ReturnType<typeof setTimeout> | null = null;
-    function checkScrollHeight() {
-      const { scrollHeight } = document.body;
-      if (prevScrollHeight !== scrollHeight) {
-        updateTocPositions();
-      }
-      prevScrollHeight = scrollHeight;
-      timeoutId = setTimeout(checkScrollHeight, 250);
-    }
-    timeoutId = setTimeout(checkScrollHeight, 250);
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    };
-  }, [updateTocPositions]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", onScroll);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
+    setToc(toc);
   }, []);
-
-  // For post SSR
-  useEffect(() => {
-    onScroll();
-  }, [onScroll]);
-
-  if (!toc || !headingTops) return null;
 
   return (
     <Wrapper>
-      <TocContainer>
-        <TocList top={112}>
-          {toc &&
-            toc.map((item, index) => (
-              <TocItem
-                key={item.id}
-                id={item.id}
-                isActive={item.id === activeId}
-                marginLeft={item.level * 8}
-                isEnd={toc.length - 1 === index}
-              >
-                <a href={`#${item.id}`}>{item.text}</a>
-              </TocItem>
-            ))}
-        </TocList>
-      </TocContainer>
+      {/* TODO : next-seo로 seo 변경 */}
+      <BlogHead />
+      <PostHeader>PostHeader</PostHeader>
+      <PostToc />
+      <Post>{children}</Post>
+      <PostFooter>PostFooter</PostFooter>
     </Wrapper>
   );
 };
 
-export default Toc;
+export default PostLayout;

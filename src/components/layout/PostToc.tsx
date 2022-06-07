@@ -3,6 +3,8 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useToc } from "recoil/atom/toc/toc";
 
+import Sticky from "components/stickey";
+
 import { devices } from "styles/devices";
 import { themedPalette } from "styles/theme";
 import { getScrollTop } from "utils/utils";
@@ -16,11 +18,14 @@ const TocContainer = styled.div`
   ${devices.largeDesktop} {
     position: absolute;
     left: 100%;
-    width: 240px;
-    margin-left: 80px;
-    padding: 4px 12px;
-    border-left: 2px solid ${themedPalette.secondaryBorder};
   }
+`;
+
+const TocList = styled(Sticky)`
+  width: 240px;
+  margin-left: 80px;
+  padding: 4px 12px;
+  border-left: 2px solid ${themedPalette.secondaryBorder};
 `;
 
 interface TocItem {
@@ -33,6 +38,7 @@ const TocItem = styled.div<TocItem>`
   margin-left: ${({ marginLeft }) => `${marginLeft}px`};
   margin-bottom: ${({ isEnd }) => (isEnd ? "unset" : "4px")};
   font-size: 14px;
+
   & > a {
     display: block;
     line-height: 1.5;
@@ -99,6 +105,23 @@ const Toc: React.FC<Props> = () => {
 
   useEffect(() => {
     updateTocPositions();
+
+    let prevScrollHeight = document.body.scrollHeight;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    function checkScrollHeight() {
+      const { scrollHeight } = document.body;
+      if (prevScrollHeight !== scrollHeight) {
+        updateTocPositions();
+      }
+      prevScrollHeight = scrollHeight;
+      timeoutId = setTimeout(checkScrollHeight, 250);
+    }
+    timeoutId = setTimeout(checkScrollHeight, 250);
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, [updateTocPositions]);
 
   useEffect(() => {
@@ -109,22 +132,30 @@ const Toc: React.FC<Props> = () => {
     };
   }, []);
 
+  // For post SSR
+  useEffect(() => {
+    onScroll();
+  }, [onScroll]);
+
   if (!toc || !headingTops) return null;
 
   return (
     <Wrapper>
       <TocContainer>
-        {toc.map((item, index) => (
-          <TocItem
-            key={item.id}
-            id={item.id}
-            isActive={item.id === activeId}
-            marginLeft={item.level * 8}
-            isEnd={toc.length - 1 === index}
-          >
-            <a href={`#${item.id}`}>{item.text}</a>
-          </TocItem>
-        ))}
+        <TocList top={112}>
+          {toc &&
+            toc.map((item, index) => (
+              <TocItem
+                key={item.id}
+                id={item.id}
+                isActive={item.id === activeId}
+                marginLeft={item.level * 8}
+                isEnd={toc.length - 1 === index}
+              >
+                <a href={`#${item.id}`}>{item.text}</a>
+              </TocItem>
+            ))}
+        </TocList>
       </TocContainer>
     </Wrapper>
   );
