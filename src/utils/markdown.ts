@@ -3,8 +3,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkPrism from "remark-prism";
 import rehypeSlug from "rehype-slug";
-
-// remark-prism  unist-util-visit unist rehype-autolink-headings rehype-katex
+import rehypeKatex from "rehype-katex";
 
 // eslint-disable-next-line import/prefer-default-export
 export const parseMarkdownToMdx = (body: string, path: string) => {
@@ -17,6 +16,7 @@ export const parseMarkdownToMdx = (body: string, path: string) => {
       ],
       rehypePlugins: [
         rehypeSlug, // 타이틀 텍스트를 아이디로 추가
+        rehypeKatex, // remark-math 마크다운에서 수학용으로 결합 하거나 HTML math-inline에서 math-display클래스를 추가할 수 있는 수학을 렌더링하는 통합 플러그인
       ],
     },
   });

@@ -119,21 +119,73 @@ _기울여 쓰기_
 # 글자 색상
 
 ```html
-<span style={{ color: red }}>red</span>
+<div class="star_score">
+  <span class="st_off"><span class="st_on" style="width:100.0%">asdasd</span></span
+  ><em>10</em>
+</div>
 ```
 
 <br />
 
-```ts
-function parseCodeSnippet() {
-  return (tree: Node) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    visit(tree, "element", (node: any) => {
-      const [token, type]: [string, TokenType] = node.properties.className || [];
-      if (token === "token") {
-        node.properties.className = [tokenClassNames[type]];
-      }
-    });
+```jsx
+import React, { Component } from "react";
+
+export default class Header extends Component {
+  static propTypes = {
+    addTodo: PropTypes.function.isRequired,
   };
+
+  handleSave = text => {
+    if (text.length !== 0) {
+      this.props.addTodo(text);
+    }
+  };
+
+  console.log(1)
+
+  render() {
+    return (
+      <header className="header">
+        <h1>todos</h1>
+        <TodoTextInput newTodo onSave={this.handleSave} placeholder="placeholder" />
+      </header>
+    );
+  }
+}
+```
+
+```tsx
+interface IAnimal {
+  name: string;
+
+  move(distanceInMeters: number): void;
+}
+class Animal implements IAnimal {
+  constructor(public name: string) {}
+
+  move(distanceInMeters: number = 0) {
+    console.log("slide");
+
+    super.move(distanceInMeters);
+  }
+}
+```
+
+```css
+body {
+  font: 14px "Noto Sans KR", sans-serif;
+  line-height: 1.4em;
+  background: #fff;
+}
+
+input::before {
+  content: "";
+}
+
+:focus {
+}
+
+.hidden {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 ```
