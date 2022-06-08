@@ -10,7 +10,7 @@ export interface StickyProps {
   className?: string;
   children: React.ReactNode;
 }
-
+// TODO : Update Sticky
 const Sticky: React.FC<StickyProps> = ({ className, top, children }) => {
   const [y, setY] = useState(0);
   const element = useRef<HTMLDivElement | null>(null);
@@ -18,6 +18,7 @@ const Sticky: React.FC<StickyProps> = ({ className, top, children }) => {
 
   const setup = useCallback(() => {
     if (!element.current) return;
+
     const pos = element.current.getBoundingClientRect();
     setY(pos.top + getScrollTop());
   }, []);
@@ -34,7 +35,6 @@ const Sticky: React.FC<StickyProps> = ({ className, top, children }) => {
     setup();
   }, [setup]);
 
-  // register scroll event
   useEffect(() => {
     window.addEventListener("scroll", onScroll);
     return () => {

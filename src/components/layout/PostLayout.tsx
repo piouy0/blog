@@ -14,7 +14,9 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-const PostHeader = styled.div``;
+const PostHeader = styled.div`
+  height: 300px;
+`;
 
 const Post = styled.div`
   & img {
@@ -22,10 +24,12 @@ const Post = styled.div`
   }
 `;
 
-const PostFooter = styled.div``;
+const PostFooter = styled.div`
+  height: 100vh;
+`;
 
 interface Props {
-  children: any;
+  children: React.ReactElement;
   frontMatter: FrontMatter;
   slug: string;
 }
