@@ -1,5 +1,3 @@
-![](https://velog.velcdn.com/images/piouy0/post/6d192d72-9007-4a49-99e0-bd356d4e4e9d/image.png)
-
 ## 😋 브라우저란
 
 우리는 html 문서에 html, css 그리고 자바스크립트로 코드를 작성해 웹페이지를 만듭니다. 브라우저는 사용자가 작성한 html 코드를 가지고 웹페이지를 그려줍니다.
