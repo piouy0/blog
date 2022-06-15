@@ -55,9 +55,15 @@
 
 ### Build DOM
 
+DOM을 만들기 앞서, DOM이 뭔지 알아보겠습니다.
+
+> DOM은 Document Object Model의 약자로 html 문서에 대한 모든 내용을 담고 있는 객체입니다.
+
+먼저 브라우저에서 사용자가 요청한 웹페이지에 html 문서를 불러오고 파싱을 합니다.
+
 ![](https://velog.velcdn.com/images/piouy0/post/0286eae5-7312-43ee-a963-c1d920ce8a11/image.webp)
 
-먼저 브라우저에서 사용자가 요청한 웹페이지에 문서를 불러오고 파싱을 합니다. 그림과 같이 html 코드는 Tokenizer를 통해 HTML5 표준에 지정된 고유한 토큰으로 변환됩니다.
+그림과 같이 html 코드는 Tokenizer를 통해 HTML5 표준에 지정된 고유한 토큰으로 변환됩니다.
 토큰은 다음 코드와 같이 생겼습니다.
 
 ![](https://velog.velcdn.com/images/piouy0/post/58637d92-c8be-42c9-b34a-0f91e44d45b6/image.png)
@@ -82,6 +88,13 @@
 
 ![](https://velog.velcdn.com/images/piouy0/post/b0eb2a8e-f0ea-4cc3-91bd-77855e4d8162/image.png)
 
+> 🙏 style 태그 상단에 위치시키면 좋은 이유
+
+1. 사용자가 흰 화면을 응시하는 시간을 줄이기 위해서
+   => CSS는 렌더링 차단 리소스로 취급됩니다.
+2. Link를 이용하여 스타일 시트를 다운 받는 경우 최대한 빠르게 다운받기위해
+   => 브라우저는 모든 외부 스타일 시트가 다운로드 후 CSSOM Tree가 구성될 때까지 웹 페이지 렌더링을 차단합니다.
+
 ### Syntax Tree - Run JS
 
 자바스크립트는 렌더링 엔진이 아닌 자바스크립트 엔진(Javascript Interpreter 라고도 함.)이 처리합니다.
@@ -90,7 +103,7 @@
 2. 제어 권한을 넘겨 받은 자바스크립트 엔진은 script 태그 내의 자바스크립트 코드 또는 src attribute에 정의된 자바스크립트 파일을 로드하고 파싱하여 실행합니다.
 3. 자바스크립트의 실행이 완료되면 다시 html 파서로 제어권한을 넘겨서 브라우저가 중지했던 시점부터 DOM 생성을 재개합니다.
 
-> 🙏 script 태그는 body 요소의 가장 아래에 위치시키는 것이 좋은 아이디어입니다.
+> 🙏 script 태그는 body 요소의 가장 아래에 위치시키는게 좋은 이유.
 
 1. html요소들이 스크립트 로딩 지연으로 인해 렌더링에 지장 받는 일이 발생하지 않아 페이지 로딩 시간이 단축됩니다.
 2. DOM이 완성되지 않은 상태에서 자바스크립트가 DOM을 조작하면 에러가 발생합니다.
